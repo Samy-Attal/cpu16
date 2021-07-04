@@ -1,0 +1,51 @@
+CPU sur 16 bits
+opcode : 4 premiers bits
+
+Type d'instructions : 
+	
+* Operations : 	- add	0001	: addition 
+				- sub 	0010	: soustraction 
+				- and	0011	: et logique
+				- or 	0100	: ou logique
+				- not 	0101	: non logique
+	
+	syntaxe :
+		add ra, rb
+		0001 AAA 0 BBBX XXXX 
+
+		add ra, immediat
+		0001 AAA 1 IIII IIII
+
+	immediat = nombre binaire sur un octet soit de 0 à 255 
+
+* Accès mémoire :	- loa	1000	: chargement mémoire
+  (avec offset)		- sto 	1001	: stockage mémoire
+
+	syntaxe : 				
+		loa ra, 0xADDR
+		1000 AAAX XXXX XXXX 
+		
+	X = OFFSET sur 9 bits (511 decimal)
+	
+* Branchements : 	- jmp 	1010	: jump inconditionnel 
+					- jn 	1011	: jump si < 0 (flag N)
+					- jz 	1100 	: jump si = 0 (flag Z)
+					- jp 	1101	: jump si > 0 (flag P)
+	syntaxe :
+		jxx 0xADDR 
+		1010 JJXX XXXX XXXX
+		X = OFFSET sur 10 bits (1023 decimal)
+		
+		JJ	: 00 -> jmp
+		 	: 01 -> jn
+		 	: 10 -> jz
+		 	: 11 -> jp
+		 	
+* Appel système :  - sys	1111
+		
+		sys 0xADDR
+		1111 XXXX XXXX XXXX
+		 	
+---- 
+opcode libres : 
+0110, 0111, 1110
