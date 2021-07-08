@@ -42,7 +42,6 @@ begin
     end if;
 end process;
 
-
 result <= res;
 
 end archi;
