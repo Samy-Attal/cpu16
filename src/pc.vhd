@@ -22,10 +22,10 @@ process(reset, next_instr, jump_en)
 begin
     if reset = '1' then 
         count <= "000000000";
+    elsif rising_edge(jump_en) then 
+        count <= jump; --- '1';
     elsif rising_edge(next_instr) then
         count <= count + '1';
-    elsif rising_edge(jump_en) then 
-        count <= jump - '1';
     end if;
 end process;  
 

@@ -32,14 +32,9 @@ Type d'instructions :
 					- jz 	1100 	: jump si = 0 (flag Z)
 					- jp 	1101	: jump si > 0 (flag P)
 	syntaxe :
-		jxx 0xADDR 
-		1010 JJXX XXXX XXXX
+		jmp 0xADDR 
+		1010 XXXX XXXX XXXX
 		X = OFFSET sur 10 bits (1023 decimal)
-		
-		JJ	: 00 -> jmp
-		 	: 01 -> jn
-		 	: 10 -> jz
-		 	: 11 -> jp
 		 	
 * Appel système :  - sys	1111
 		

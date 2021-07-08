@@ -78,7 +78,7 @@ begin
         mem_r <= '0'; mem_w <= '0'; alu_or_mem <= '0';
     elsif EP = res_write then
         next_instr <= '0'; jump_en <= '0';
-        reg_r <= '0'; reg_w <= '1'; alu_ctrl <= "000";
+        reg_r <= '0'; reg_w <= '1'; alu_ctrl <= opcode(2 downto 0); --000
         mem_r <= '0'; mem_w <= '0'; alu_or_mem <= '0';
     elsif EP = mem_read then
         next_instr <= '0'; jump_en <= '0';

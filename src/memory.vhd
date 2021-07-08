@@ -24,7 +24,7 @@ begin
 process(clk, reset)
 begin   
     if reset = '1' then -- program instructions
-        mem(0 to 4) <= (x"DCBA", x"110A" ,x"900F", x"1240", x"D001");
+        mem(0 to 4) <= (x"0000", x"10E0" ,x"2620", x"D001", x"900F");
     elsif rising_edge(clk) then 
         if mem_r = '1' then 
             data_out <= mem(to_integer(unsigned(addr)));
@@ -36,14 +36,9 @@ end process;
 memf <= mem(15);
 end archi;
 
--- example program : 
--- add R0, 0x1 | 0001 0001 0000 0001 = 0x1101
--- add R1, R0  | 0001 0010 0000 0000 = 0x1200
--- sto R1, 0xA | 1001 0010 0000 1010 = 0x920A
--- loa R2, 0xA | 1000 0100 0000 1010 = 0x840A
--- add R3, R2  | 1000 0110 0100 0000 = 0x8640
+-- 00000000000000000000000000000000000000000
+-- add R0, R7   | 0001 0000 1110 0000 = 10E0
+-- sub R3, R1   | 0010 0110 0010 0000 = 2620
+-- jp  0x1      | 1101 0000 0000 0001 = D001
+-- sto R0, 0xF  | 1001 0000 0000 000F = 900F
 
--- add R0, 0xA  | 0001 0001 0000 1010 = x110A
--- sto R0, 0xf  | 1001 0000 0000 1111 = x900F
--- add R1, R2   | 0001 0010 0100 0000 = x1240
--- jp 0x1       | 1101 0000 0000 0000 = xD000
