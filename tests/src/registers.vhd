@@ -8,10 +8,11 @@ use ieee.numeric_std.all;
 
 entity registers is 
     port(
-        clk, reset, reg_r, reg_w : in std_logic;        
-        addrA, addrB : in std_logic_vector(2 downto 0);  
-        data_w : in std_logic_vector(15 downto 0);      
-        dataA, dataB : out std_logic_vector(15 downto 0)
+        clk, reset, reg_r, reg_w : in std_logic;            -- clock, reset, write access
+        addrA, addrB : in std_logic_vector(2 downto 0);  -- adress A, adress B 
+        data_w : in std_logic_vector(15 downto 0);       -- data input (result)
+        dataA, dataB : out std_logic_vector(15 downto 0); -- data A & B output (arguments)
+        reg0, reg1, reg2, reg3, reg4, reg5, reg6, reg7 : out std_logic_vector(15 downto 0)
     );
 end registers;
 
@@ -41,5 +42,15 @@ begin
         end if;
     end if;
 end process;
+
+-- uniquement pour visualiser
+reg0 <= reg(0);
+reg1 <= reg(1);
+reg2 <= reg(2);
+reg3 <= reg(3);
+reg4 <= reg(4);
+reg5 <= reg(5);
+reg6 <= reg(6);
+reg7 <= reg(7);
 
 end archi;

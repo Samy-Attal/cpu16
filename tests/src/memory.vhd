@@ -11,7 +11,7 @@ entity memory is
         clk, reset, mem_r, mem_w : in std_logic;
         data_in : in std_logic_vector(15 downto 0);
         addr : in std_logic_vector(8 downto 0);
-        data_out : out std_logic_vector(15 downto 0)
+        data_out, memf : out std_logic_vector(15 downto 0)
     );
 end memory;
 
@@ -33,7 +33,7 @@ begin
         end if;
     end if;
 end process;
-
+memf <= mem(15);
 end archi;
 
 -- 00000000000000000000000000000000000000000
