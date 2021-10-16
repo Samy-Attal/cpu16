@@ -1,7 +1,0 @@
-and R0,0000
-and R1,0000
-add R0,0003
-add R1,0007
-sub R0,0001
-jp 0003
-sto R1,0010

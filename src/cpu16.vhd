@@ -8,8 +8,6 @@ use ieee.numeric_std.all;
 entity cpu16 is 
     port(
         clk, reset : in std_logic;
-        lcd_rdy : out std_logic;
-        ffff : out std_logic_vector(15 downto 0);
     );
 end cpu16;
 
@@ -55,7 +53,10 @@ cnt : entity work.pc
 -- gestion registres
 adrA <= instr(11 downto 9);
 adrB <= instr(7 downto 5);
-dataB <= regB when instr(8) = '0' else x"00"&instr(7 downto 0);
+dataB <= regB when instr(8) = '0' else x"00"&instr(7 downto 0);*
+
+-- signal alu_or_mem gere ce que le registre recoit
+-- resultat de l'alu ou donnée de la mémoire
 reg_in <= result when alu_or_mem = '0' else mem_out;
 
 -- gestion memory & program counter

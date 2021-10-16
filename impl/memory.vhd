@@ -42,3 +42,13 @@ begin
 end process;
 end archi;
 
+-- nop              x"0000" -- reserved
+-- or  r0, 0x64     x"4164" 
+-- sto r0, 0x50     x"9050" 
+-- not r0           x"5000"
+-- jn  0x1          x"B001"
+-- or r0, 0xFF      x"41FF"
+-- hlt              x"F000"
+--
+
+

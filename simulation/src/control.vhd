@@ -17,7 +17,7 @@ end control;
 
 architecture archi of control is
 signal opcode : std_logic_vector(3 downto 0);
-type state is (ntd, wait_instr, calc, res_write, mem_read, reg_write, reg_read, mem_write, writing_mem, jump, neg, zero, pos);
+type state is (ntd, wait_instr, calc, res_write, mem_read, reg_write, reg_read, mem_write, writing_mem, jump, neg, zero, pos, halt);
 signal EP, EF: state;
 
 begin 
@@ -43,6 +43,7 @@ begin
             elsif opcode = "1011" then EF <= neg;                       -- jn
             elsif opcode = "1100" then EF <= zero;                      -- jz
             elsif opcode = "1101" then EF <= pos;                       -- jp
+            elsif opcode = "1111" then EF <= halt;                      -- hlt
             end if;
         when calc => EF <= res_write;
         when res_write => EF <= ntd;
@@ -58,6 +59,7 @@ begin
         when pos => EF <= ntd;
             if nzp(0) = '1' then EF <= jump; end if;
         when jump => EF <= ntd;
+        when halt => EF <= halt;
     end case;
 end process;
 
@@ -108,6 +110,10 @@ begin
         next_instr <= '0'; jump_en <= '1';
         reg_r <= '0'; reg_w <= '0'; alu_ctrl <= "000";
         mem_r <= '1'; mem_w <= '0'; alu_or_mem <= '0';
+    elsif EP = halt then 
+    next_instr <= '0'; jump_en <= '0';
+    reg_r <= '0'; reg_w <= '0'; alu_ctrl <= "000";
+    mem_r <= '0'; mem_w <= '0'; alu_or_mem <= '0';
     end if;
 end process;
 
